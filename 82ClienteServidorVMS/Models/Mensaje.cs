@@ -9,5 +9,6 @@ namespace _82ClienteServidorVMS.Models
     public class Mensaje
     { 
         public string ContenidoMensaje { get; set; } = null!;
+        public string Color { get; set; } = null!;
     }
 }

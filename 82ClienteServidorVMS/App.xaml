@@ -2,8 +2,8 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:_82ClienteServidorVMS"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Views/PanelView.xaml">
     <Application.Resources>
-         
+        <FontFamily x:Key="Highspeed">Assets/HIGHSPEED.TTF#High speed</FontFamily>
     </Application.Resources>
 </Application>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VMS Panel</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+        box-sizing: border-box;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        font-family: Helvetica, sans-serif;
+        gap: 30px;
+        overflow-y: hidden;
+      }
+      main {
+        background-color: #dedaf4;
+        padding: 20px;
+        margin-top: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 30px 0px rgba(128, 128, 128, 0.315);
+      }
+      main h1 {
+        text-align: center;
+        padding: 0;
+        margin: 0 20px 30px 20px;
+        font-weight: 900;
+      }
+
+      main form {
+        display: flex;
+        gap: 15px;
+        flex-direction: column;
+      }
+
+      main form div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      section {
+        overflow-y: auto;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px 20px 0 0;
+      }
+
+      section div {
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #d3dfdc;
+        box-shadow: 0 3px 10px 0px rgba(128, 128, 128, 0.39);
+      }
+
+      section div button,
+      main form input[type="submit"] {
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #689c90;
+        color: white;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Panel de control</h1>
+      <form method="post" action="./agregar">
+        <div>
+          <label>Estado del VMS</label>
+          <select name="" id="estado">
+            <option value="" selected disabled>Seleccione una opcion</option>
+            <option value="0">Apagado</option>
+            <option value="1">Encendido</option>
+          </select>
+        </div>
+        <div>
+          <label>Escriba el mensaje a enviar</label>
+          <input type="text" name="contenido"/>
+        </div>
+        <div>
+          <label>Color del mensaje</label>
+          <input type="color" name="color"/>
+        </div>
+        <input type="submit" value="Enviar" />
+      </form>
+    </main>
+    <section>
+      <h1>Mensajes en la pantalla</h1>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+      <div class="mensaje">
+        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+        <button>Eliminar</button>
+      </div>
+    </section>
+  </body>
+</html>
