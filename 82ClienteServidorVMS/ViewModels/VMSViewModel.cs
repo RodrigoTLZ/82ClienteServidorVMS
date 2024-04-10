@@ -16,7 +16,10 @@ namespace _82ClienteServidorVMS.ViewModels
     {
         private int indicemensaje;
         private Timer timer;
-        public Mensaje MensajeSeleccionado { get; set; }
+        Timer timerparpadeo;
+        Timer timerparpadeomostrar = new Timer(2000);
+        public string mensajetexto;
+        public Mensaje? MensajeSeleccionado { get; set; }
         public ObservableCollection<Mensaje> ListadoMensajes { get; set; } = new();
         PanelServer server = new();
 
@@ -51,16 +54,59 @@ namespace _82ClienteServidorVMS.ViewModels
 
         private void Server_MensajeRecibido(object? sender, Mensaje e)
         {
-            ListadoMensajes.Add(e);
-
-            if (ListadoMensajes.Count > 1 && timer == null)
+            if(e.Estado == "1")
             {
-                IniciarTimer();
+                ListadoMensajes.Add(e);
+
+                if (ListadoMensajes.Count > 1 && timer == null)
+                {
+                    if(MensajeSeleccionado != null)
+                    {
+                        IniciarTimer();
+                    }
+                    else
+                    {
+                        MensajeSeleccionado = ListadoMensajes[0];
+                        IniciarTimer();
+                    }
+                }
+                else
+                {
+                    MensajeSeleccionado = ListadoMensajes[0];
+                }
+
+                if(timerparpadeo != null)
+                {
+                    timerparpadeo.Stop();
+                }
+                
+            }
+            else if(e.Estado == "1")
+            {
+                MensajeSeleccionado = null;
             }
             else
             {
-                MensajeSeleccionado = ListadoMensajes[0];
+                timerparpadeo = new Timer(2000);
+                timerparpadeo.Elapsed += Timer_Elapsed1;
+                mensajetexto = e.ContenidoMensaje;
+                timerparpadeo.Start();
             }
+            Actualizar();
+
+        }
+
+        private void Timer_Elapsed1(object? sender, System.Timers.ElapsedEventArgs e)
+        {
+            MensajeSeleccionado.ContenidoMensaje = "";
+            timerparpadeomostrar.Elapsed += Timer_Elapsed2;
+            timerparpadeomostrar.Start();
+            Actualizar();
+        }
+
+        private void Timer_Elapsed2(object? sender, System.Timers.ElapsedEventArgs e)
+        {
+            MensajeSeleccionado.ContenidoMensaje = mensajetexto;
             Actualizar();
         }
 

@@ -70,59 +70,79 @@
     </style>
   </head>
   <body>
-    <main>
-      <h1>Panel de control</h1>
-      <form method="post" action="./agregar">
-        <div>
-          <label>Estado del VMS</label>
-          <select name="" id="estado">
-            <option value="" selected disabled>Seleccione una opcion</option>
-            <option value="0">Apagado</option>
-            <option value="1">Encendido</option>
-          </select>
-        </div>
-        <div>
-          <label>Escriba el mensaje a enviar</label>
-          <input type="text" name="contenido"/>
-        </div>
-        <div>
-          <label>Color del mensaje</label>
-          <input type="color" name="color"/>
-        </div>
-        <input type="submit" value="Enviar" />
-      </form>
-    </main>
-    <section>
-      <h1>Mensajes en la pantalla</h1>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
+      <main>
+          <h1>Panel de control</h1>
+          <form method="post" action="./agregar">
+              <div>
+                  <label>Estado del VMS</label>
+                  <select name="estado" id="estado" onchange="cambiarEstado()">
+                      <option value="" selected disabled>Seleccione una opcion</option>
+                      <option value="0">Apagado</option>
+                      <option value="1">Encendido</option>
+                      <option value="2">Intermitente</option>
+                  </select>
+              </div>
+              <div id="contenidoDiv">
+                  <label>Escriba el mensaje a enviar</label>
+                  <input type="text" name="contenido" id="contenido" />
+              </div>
+              <div id="colorDiv">
+                  <label>Color del mensaje</label>
+                  <input type="color" name="color" id="color"/>
+              </div>
+              <input type="submit" value="Enviar" />
+          </form>
+      </main>
+      <section>
 
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-      <div class="mensaje">
-        <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
-        <button>Eliminar</button>
-      </div>
-    </section>
+          <h1>Mensajes en la pantalla</h1>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+          <div class="mensaje">
+              <h3>Este es un ejemplo de mensaje enviado al VMS</h3>
+              <button>Eliminar</button>
+          </div>
+      </section>
+
+      <script>
+          function cambiarEstado() {
+              var estado = document.getElementById("estado").value;
+              var contenidoInput = document.getElementById("contenido");
+              var colorInput = document.getElementById("color");
+
+              if (estado === "0" || estado === "2") {
+                  contenidoInput.disabled = true;
+                  colorInput.disabled = true;
+                  contenidoInput.value = "";
+                  colorInput.value = "";
+              } else {
+                  contenidoInput.disabled = false;
+                  colorInput.disabled = false;
+              }
+          }
+      </script>
   </body>
 </html>

@@ -61,7 +61,8 @@ namespace _82ClienteServidorVMS.Services
                         Mensaje mensaje = new()
                         {
                             ContenidoMensaje = diccionario["contenido"] ?? "N/A",
-                            Color = diccionario["color"] ?? "#FAFA00"
+                            Color = diccionario["color"] ?? "#FAFA00",
+                            Estado = diccionario["estado"] ?? "1"
                         };
 
                         Application.Current.Dispatcher.Invoke(() =>
