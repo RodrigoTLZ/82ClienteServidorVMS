@@ -51,7 +51,7 @@
                            FontSize="70"
                            FontFamily="{StaticResource Highspeed}"
                            TextWrapping="Wrap"
-                           Text="{Binding MensajeSeleccionado.ContenidoMensaje}"></TextBlock>
+                           Text="{Binding MensajeTexto}"></TextBlock>
                 </Grid>
             </Border>
 

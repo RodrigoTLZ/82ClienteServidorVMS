@@ -17,8 +17,8 @@ namespace _82ClienteServidorVMS.ViewModels
         private int indicemensaje;
         private Timer timer;
         Timer timerparpadeo;
-        Timer timerparpadeomostrar = new Timer(2000);
-        public string mensajetexto;
+        Timer timerparpadeomostrar;
+        public string MensajeTexto { get;set; }
         public Mensaje? MensajeSeleccionado { get; set; }
         public ObservableCollection<Mensaje> ListadoMensajes { get; set; } = new();
         PanelServer server = new();
@@ -34,6 +34,7 @@ namespace _82ClienteServidorVMS.ViewModels
         {
             indicemensaje = (indicemensaje + 1) % ListadoMensajes.Count;
             MensajeSeleccionado = ListadoMensajes[indicemensaje];
+            MensajeTexto = MensajeSeleccionado.ContenidoMensaje;         
             Actualizar();
         }
 
@@ -54,6 +55,7 @@ namespace _82ClienteServidorVMS.ViewModels
 
         private void Server_MensajeRecibido(object? sender, Mensaje e)
         {
+            
             if(e.Estado == "1")
             {
                 ListadoMensajes.Add(e);
@@ -67,30 +69,55 @@ namespace _82ClienteServidorVMS.ViewModels
                     else
                     {
                         MensajeSeleccionado = ListadoMensajes[0];
+                        MensajeTexto = MensajeSeleccionado.ContenidoMensaje;
                         IniciarTimer();
                     }
                 }
                 else
                 {
                     MensajeSeleccionado = ListadoMensajes[0];
+                    MensajeTexto = MensajeSeleccionado.ContenidoMensaje;
                 }
 
                 if(timerparpadeo != null)
                 {
                     timerparpadeo.Stop();
+                    timerparpadeomostrar.Stop();
                 }
-                
             }
-            else if(e.Estado == "1")
+            else if(e.Estado == "0")
             {
-                MensajeSeleccionado = null;
+                MensajeTexto = "";
+                if(timer != null)
+                {
+                    timer.Stop();
+                }
+                if(timerparpadeo != null)
+                {
+                    timerparpadeo.Stop();
+                }
+                if(timerparpadeomostrar != null)
+                {
+                    timerparpadeomostrar.Stop();
+                }
             }
             else
             {
-                timerparpadeo = new Timer(2000);
-                timerparpadeo.Elapsed += Timer_Elapsed1;
-                mensajetexto = e.ContenidoMensaje;
-                timerparpadeo.Start();
+                if(ListadoMensajes.Count > 0)
+                {
+                
+                    if (!timer.Enabled && ListadoMensajes.Count > 1)
+                    {
+                        IniciarTimer();
+                    }
+                    timerparpadeo = new Timer(2000);
+                    timerparpadeomostrar = new Timer(1000);
+                    timerparpadeo.Elapsed += Timer_Elapsed1;
+                    MensajeTexto = MensajeSeleccionado.ContenidoMensaje;
+                    timerparpadeo.AutoReset = false;
+                    timerparpadeo.Start();
+                }
+                
             }
             Actualizar();
 
@@ -98,21 +125,25 @@ namespace _82ClienteServidorVMS.ViewModels
 
         private void Timer_Elapsed1(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            MensajeSeleccionado.ContenidoMensaje = "";
+            MensajeTexto = "";
             timerparpadeomostrar.Elapsed += Timer_Elapsed2;
+            timerparpadeomostrar.AutoReset = false;
+            timerparpadeo.Stop();
             timerparpadeomostrar.Start();
             Actualizar();
         }
 
         private void Timer_Elapsed2(object? sender, System.Timers.ElapsedEventArgs e)
         {
-            MensajeSeleccionado.ContenidoMensaje = mensajetexto;
+            MensajeTexto = MensajeSeleccionado.ContenidoMensaje;
+            timerparpadeomostrar.Stop();
+            timerparpadeo.Start();    
             Actualizar();
         }
 
         private void IniciarTimer()
         {
-            timer = new Timer(25000);
+            timer = new Timer(15000);
             timer.Elapsed += Timer_Elapsed;
             timer.Start();
         }
