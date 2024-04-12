@@ -66,6 +66,10 @@
         margin-bottom: 5px;
       }
 
+      input[type="color"] {
+        width: 100px;
+      }
+
       section div button,
       main form input[type="submit"] {
         border: none;
@@ -74,6 +78,7 @@
         background-color: #689c90;
         color: white;
         cursor: pointer;
+        margin-top: 15px;
       }
     </style>
   </head>
@@ -82,7 +87,7 @@
       <h1>Panel de control</h1>
       <form method="post" action="./agregar">
         <div>
-          <label>Estado del VMS</label>
+          <label>Estado del VMS:</label>
           <select name="estado" id="estado" onchange="cambiarEstado()">
             <option value="0">Apagado</option>
             <option selected value="1">Encendido</option>
@@ -91,16 +96,10 @@
         </div>
         <div id="contenidoDiv">
           <label>Escriba el mensaje (máximo 60 caracteres):</label>
-          <input
-            maxlength="60"
-            type="text"
-            name="contenido"
-            id="contenido"
-            required
-          />
+          <input maxlength="60" type="text" name="contenido" id="contenido" />
         </div>
         <div id="colorDiv">
-          <label>Color del mensaje</label>
+          <label>Color del mensaje:</label>
           <input type="color" name="color" id="color" />
         </div>
         <input type="submit" value="Enviar" />

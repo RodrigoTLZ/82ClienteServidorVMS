@@ -58,12 +58,16 @@ namespace _82ClienteServidorVMS.ViewModels
             
             if(e.Estado == "1")
             {
-                if(e.ContenidoMensaje.Length <= 60) 
-                { 
+                if(e.ContenidoMensaje != "")
+                {
+
+                
+                    if(e.ContenidoMensaje.Length <= 60) 
+                    { 
                     ListadoMensajes.Add(e);
 
-                if (ListadoMensajes.Count > 1 && timer == null)
-                {
+                    if (ListadoMensajes.Count > 1 && timer == null)
+                    {
                     if(MensajeSeleccionado != null)
                     {
                         IniciarTimer();
@@ -87,6 +91,11 @@ namespace _82ClienteServidorVMS.ViewModels
                     timerparpadeomostrar.Stop();
                 }
                }
+              }
+                else
+                {
+                    MensajeTexto = MensajeSeleccionado.ContenidoMensaje;
+                }
             }
             else if(e.Estado == "0")
             {
