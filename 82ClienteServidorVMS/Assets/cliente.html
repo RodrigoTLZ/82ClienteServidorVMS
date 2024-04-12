@@ -18,7 +18,7 @@
       }
       main {
         background-color: #dedaf4;
-        padding: 20px;
+        padding: 40px;
         margin-top: 20px;
         border-radius: 15px;
         box-shadow: 0 5px 30px 0px rgba(128, 128, 128, 0.315);
@@ -26,8 +26,10 @@
       main h1 {
         text-align: center;
         padding: 0;
-        margin: 0 20px 30px 20px;
-        font-weight: 900;
+        margin: 30px;
+        margin-top: 0px;
+        font-size: 45px;
+        font-weight: bold;
       }
 
       main form {
@@ -58,6 +60,12 @@
         box-shadow: 0 3px 10px 0px rgba(128, 128, 128, 0.39);
       }
 
+      label {
+        font-weight: bold;
+        margin-top: 10px;
+        margin-bottom: 5px;
+      }
+
       section div button,
       main form input[type="submit"] {
         border: none;
@@ -70,45 +78,50 @@
     </style>
   </head>
   <body>
-      <main>
-          <h1>Panel de control</h1>
-          <form method="post" action="./agregar">
-              <div>
-                  <label>Estado del VMS</label>
-                  <select name="estado" id="estado" onchange="cambiarEstado()">
-                      <option value="" selected disabled>Seleccione una opcion</option>
-                      <option value="0">Apagado</option>
-                      <option value="1">Encendido</option>
-                      <option value="2">Intermitente</option>
-                  </select>
-              </div>
-              <div id="contenidoDiv">
-                  <label>Escriba el mensaje a enviar</label>
-                  <input type="text" name="contenido" id="contenido" required/>
-              </div>
-              <div id="colorDiv">
-                  <label>Color del mensaje</label>
-                  <input type="color" name="color" id="color"/>
-              </div>
-              <input type="submit" value="Enviar" />
-          </form>
-      </main>
-      <script>
-          function cambiarEstado() {
-              var estado = document.getElementById("estado").value;
-              var contenidoInput = document.getElementById("contenido");
-              var colorInput = document.getElementById("color");
+    <main>
+      <h1>Panel de control</h1>
+      <form method="post" action="./agregar">
+        <div>
+          <label>Estado del VMS</label>
+          <select name="estado" id="estado" onchange="cambiarEstado()">
+            <option value="0">Apagado</option>
+            <option selected value="1">Encendido</option>
+            <option value="2">Intermitente</option>
+          </select>
+        </div>
+        <div id="contenidoDiv">
+          <label>Escriba el mensaje (máximo 60 caracteres):</label>
+          <input
+            maxlength="60"
+            type="text"
+            name="contenido"
+            id="contenido"
+            required
+          />
+        </div>
+        <div id="colorDiv">
+          <label>Color del mensaje</label>
+          <input type="color" name="color" id="color" />
+        </div>
+        <input type="submit" value="Enviar" />
+      </form>
+    </main>
+    <script>
+      function cambiarEstado() {
+        var estado = document.getElementById("estado").value;
+        var contenidoInput = document.getElementById("contenido");
+        var colorInput = document.getElementById("color");
 
-              if (estado === "0" || estado === "2") {
-                  contenidoInput.disabled = true;
-                  colorInput.disabled = true;
-                  contenidoInput.value = "";
-                  colorInput.value = "";
-              } else {
-                  contenidoInput.disabled = false;
-                  colorInput.disabled = false;
-              }
-          }
-      </script>
+        if (estado === "0" || estado === "2") {
+          contenidoInput.disabled = true;
+          colorInput.disabled = true;
+          contenidoInput.value = "";
+          colorInput.value = "";
+        } else {
+          contenidoInput.disabled = false;
+          colorInput.disabled = false;
+        }
+      }
+    </script>
   </body>
 </html>

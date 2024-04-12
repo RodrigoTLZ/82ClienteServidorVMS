@@ -58,7 +58,9 @@ namespace _82ClienteServidorVMS.ViewModels
             
             if(e.Estado == "1")
             {
-                ListadoMensajes.Add(e);
+                if(e.ContenidoMensaje.Length <= 60) 
+                { 
+                    ListadoMensajes.Add(e);
 
                 if (ListadoMensajes.Count > 1 && timer == null)
                 {
@@ -84,6 +86,7 @@ namespace _82ClienteServidorVMS.ViewModels
                     timerparpadeo.Stop();
                     timerparpadeomostrar.Stop();
                 }
+               }
             }
             else if(e.Estado == "0")
             {
