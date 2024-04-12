@@ -17,7 +17,7 @@ namespace _82ClienteServidorVMS.Services
         public event EventHandler<Mensaje>? MensajeRecibido;
         public PanelServer()
         {
-            server.Prefixes.Add("http://+:54321/mensajes/");
+            server.Prefixes.Add("http://*:54321/mensajes/");
         }
 
         public void Iniciar()

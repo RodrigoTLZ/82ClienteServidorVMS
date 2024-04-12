@@ -117,10 +117,12 @@ namespace _82ClienteServidorVMS.ViewModels
             {
                 if(ListadoMensajes.Count > 0)
                 {
-                
-                    if (!timer.Enabled && ListadoMensajes.Count > 1)
+                    if (timer != null)
                     {
-                        IniciarTimer();
+                        if (!timer.Enabled && ListadoMensajes.Count > 1)
+                        {
+                            IniciarTimer();
+                        }
                     }
                     timerparpadeo = new Timer(2000);
                     timerparpadeomostrar = new Timer(1000);
