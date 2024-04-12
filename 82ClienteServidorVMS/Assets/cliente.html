@@ -98,32 +98,30 @@
         margin-top: 15px;
       }
 
-      input[type="submit"]:hover {
-        background-color: #9c9a68;
-      }
     </style>
   </head>
   <body>
     <main>
       <h1>Panel de control</h1>
       <form method="post" action="./agregar">
-        <div>
-          <label>Estado del VMS:</label>
-          <select name="estado" id="estado" onchange="cambiarEstado()">
-            <option value="0">Apagado</option>
-            <option selected value="1">Encendido</option>
-            <option value="2">Intermitente</option>
-          </select>
-        </div>
-        <div id="contenidoDiv">
-          <label>Escriba el mensaje (máximo 60 caracteres):</label>
-          <input maxlength="60" type="text" name="contenido" id="contenido" />
-        </div>
-        <div id="colorDiv">
-          <label>Color del mensaje:</label>
-          <input type="color" name="color" id="color" />
-        </div>
-        <input type="submit" value="Enviar" />
+          <div>
+              <label>Estado del VMS:</label>
+              <select name="estado" id="estado" onchange="cambiarEstado()">
+                  <option value="0">Apagado</option>
+                  <option selected value="1">Encendido</option>
+                  <option value="2">Intermitente</option>
+              </select>
+          </div>
+          <div id="contenidoDiv">
+              <label>Escriba el mensaje (máximo 60 caracteres):</label>
+              <input maxlength="60" type="text" name="contenido" id="contenido" />
+          </div>
+          <div id="colorDiv">
+              <label>Color del mensaje:</label>
+              <input type="color" name="color" id="color" />
+          </div>
+
+          <input type="submit" value="Enviar" />
       </form>
     </main>
     <script>
